@@ -16,7 +16,7 @@
   let innerAwg = $state(42);
   let outerAwg = $state(46);
   let nOuter = $state(36);
-  let rRing_um = $state(240);
+  let rRing_um = $state(261);
   let layInner_deg = $state(8);
   let layOuter_deg = $state(20);
 
