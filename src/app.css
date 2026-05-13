@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --color-surface: rgba(0, 0, 0, 0.03);
+  --color-border: #e2e5ea;
+  --color-text-primary: #1a1d24;
+  --color-text-secondary: #4a5060;
+  --color-text-muted: #8890a4;
+  --color-accent: #2b7cb8;
+  --color-accent2: #c07830;
+  --color-ok: #2a8a50;
+  --color-ok-bg: rgba(42, 138, 80, 0.08);
+  --color-ok-border: rgba(42, 138, 80, 0.25);
+  --color-warn: #c03030;
+  --color-warn-bg: rgba(192, 48, 48, 0.08);
+  --color-warn-border: rgba(192, 48, 48, 0.25);
+  /* Coax-specific palette: warm metal for Cu strands, cool yellow for brass */
+  --color-copper: #b87333;
+  --color-brass:  #c9a64a;
+  --color-dielectric: rgba(180, 200, 230, 0.45);
+  --color-jacket: rgba(220, 220, 230, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-surface: rgba(255, 255, 255, 0.04);
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-text-primary: #e8eaf0;
+    --color-text-secondary: #8890a4;
+    --color-text-muted: #5a6178;
+    --color-accent: #4ea8de;
+    --color-accent2: #f0a050;
+    --color-ok: #3cb464;
+    --color-ok-bg: rgba(60, 180, 100, 0.08);
+    --color-ok-border: rgba(60, 180, 100, 0.25);
+    --color-warn: #dc3c3c;
+    --color-warn-bg: rgba(220, 60, 60, 0.08);
+    --color-warn-border: rgba(220, 60, 60, 0.25);
+    --color-copper: #d18647;
+    --color-brass:  #e2c060;
+    --color-dielectric: rgba(140, 170, 220, 0.18);
+    --color-jacket: rgba(255, 255, 255, 0.06);
+  }
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-accent: var(--color-accent);
+  --color-accent2: var(--color-accent2);
+  --color-ok: var(--color-ok);
+  --color-ok-bg: var(--color-ok-bg);
+  --color-ok-border: var(--color-ok-border);
+  --color-warn: var(--color-warn);
+  --color-warn-bg: var(--color-warn-bg);
+  --color-warn-border: var(--color-warn-border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  color: var(--color-text-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0c0e14;
+  }
+}
+
+input[type="range"] {
+  accent-color: var(--color-accent);
+}
