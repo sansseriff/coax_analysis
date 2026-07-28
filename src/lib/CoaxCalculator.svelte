@@ -4,10 +4,14 @@
   import CoaxCrossSection from "./CoaxCrossSection.svelte";
   import MetalsInfoModal from "./MetalsInfoModal.svelte";
 
-  import { awgToMeters } from "./awg";
+  import { awgToMeters, bundleAwg } from "./awg";
   import { METALS, RRR_OPTIONS, PFA, FEP_SOLID, makeFepFoam, type Dielectric } from "./materials";
   import { computeCoax, type Stage } from "./coax-physics";
   import { PRESETS, type CoaxPreset } from "./presets";
+
+  // The inner conductor is a 7-strand hex bundle; coax-physics hardcodes the
+  // same assumption as a = 3·r_strand.
+  const N_INNER_STRANDS = 7;
 
   // ─── State ───
   let presetKey = $state<string>("samtec_tcf3450f");
@@ -35,7 +39,10 @@
   // Operating conditions
   let stage = $state<Stage>("40to4");
   let freqGHz = $state(2.0);
-  let lengthM = $state(1.0);
+  let lengthM = $state(0.25);
+  // Cable count — the whole harness is N identical cables; heat loads scale
+  // linearly with N (RF loss is per-cable and does not).
+  let nCables = $state(1);
 
   // ─── Apply preset ───
   function applyPreset(p: CoaxPreset) {
@@ -117,6 +124,18 @@
     return v.toExponential(2);
   }
 
+  // Power in µW → auto-ranged µW / mW / W string.
+  function fmtPower_uW(uW: number): string {
+    if (isNaN(uW) || !isFinite(uW)) return "—";
+    const a = Math.abs(uW);
+    if (a >= 1e6) return `${fmt(uW / 1e6, 3)} W`;
+    if (a >= 1e3) return `${fmt(uW / 1e3, 3)} mW`;
+    return `${fmt(uW, 2)} µW`;
+  }
+
+  // ─── Harness total: the per-cable heat load × N ───
+  let harnessTotal_uW = $derived(results.Qtotal_uW * nCables);
+
   // Current preset's datasheet hints, for the "delta to datasheet" rows
   let currentPreset = $derived(PRESETS[presetKey]);
 
@@ -154,6 +173,7 @@
       ["Q̇ outer shield",           `${fmt(results.Qouter_uW, 2)} µW`],
       ["Q̇ dielectric",             `${fmt(results.Qdiel_uW, 2)} µW`],
       ["Q̇ TOTAL per cable",        `${fmt(results.Qtotal_uW, 2)} µW`],
+      [`Q̇ TOTAL × ${nCables} cables`, fmtPower_uW(harnessTotal_uW)],
     ] as ([string, string] | null)[],
   );
 
@@ -295,6 +315,7 @@
           {/if}
 
           <Slider label="Inner-strand AWG"       bind:value={innerAwg}     min={30} max={48} step={1} unit="AWG"
+                  secondary={`7×${innerAwg} ≈ ${Math.round(bundleAwg(innerAwg, N_INNER_STRANDS))} AWG bundle`}
                   presetValue={currentPreset.innerAwg} />
           <Slider label="Outer-strand AWG"       bind:value={outerAwg}     min={30} max={50} step={1} unit="AWG"
                   presetValue={currentPreset.outerAwg} />
@@ -378,7 +399,31 @@
             Operating conditions
           </div>
           <Slider label="Frequency"     bind:value={freqGHz}  min={0.1} max={4.0}  step={0.05} unit="GHz" />
-          <Slider label="Cable length"  bind:value={lengthM}  min={0.1} max={3.0}  step={0.05} unit="m" />
+          <Slider label="Cable length"  bind:value={lengthM}  min={0.01} max={1.0} step={0.01} unit="m"
+                  secondary={`${(lengthM / 0.0254).toFixed(2)} in`} />
+          <Slider label="Number of cables" bind:value={nCables} min={1} max={1024} step={1} unit="" />
+          <div class="flex items-center gap-2 -mt-1">
+            <span class="text-[11px] text-text-muted uppercase tracking-[1px]">exact N</span>
+            <input
+              type="number"
+              min="1" max="1024" step="1"
+              bind:value={nCables}
+              onchange={() => (nCables = Math.min(1024, Math.max(1, Math.round(nCables || 1))))}
+              class="w-24 px-2 py-1 rounded-md border border-border bg-transparent
+                     font-mono text-[12px] text-text-primary"
+            />
+            <div class="flex gap-1">
+              {#each [1, 8, 32, 128, 512, 1024] as n}
+                <button
+                  class="px-2 py-1 rounded border border-border font-mono text-[11px] transition-all cursor-pointer
+                         {nCables === n ? 'bg-accent2 text-white font-semibold' : 'bg-transparent text-text-muted'}"
+                  onclick={() => (nCables = n)}
+                >
+                  {n}
+                </button>
+              {/each}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -407,6 +452,29 @@
             value={stage === 'calRT' ? 'N/A' : fmt(results.Qtotal_uW, 1)}
             unit={stage === 'calRT' ? '' : 'µW'}
           />
+        </div>
+
+        <!-- Harness heat load: the "Heat / cable" figure × N -->
+        <div class="p-[18px] rounded-[10px] border border-border bg-surface">
+          <div class="text-[11px] text-accent uppercase tracking-[1.5px] mb-3 font-semibold">
+            Total heat across {nCables} cable{nCables === 1 ? '' : 's'}
+          </div>
+          {#if stage === 'calRT'}
+            <div class="text-[12px] text-text-muted leading-snug">
+              Calibration mode — all properties at 295 K, so the heat-load
+              integrals are zero by construction. Switch to a cryo stage for
+              harness totals.
+            </div>
+          {:else}
+            <div class="flex items-baseline gap-2">
+              <span class="font-mono text-[26px] font-semibold text-text-primary">
+                {fmtPower_uW(harnessTotal_uW)}
+              </span>
+              <span class="text-[12px] text-text-muted font-mono">
+                = {fmt(results.Qtotal_uW, 2)} µW × {nCables}
+              </span>
+            </div>
+          {/if}
         </div>
 
         {#if stage === 'calRT'}

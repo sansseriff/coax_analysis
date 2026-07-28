@@ -13,3 +13,17 @@ export function awgToMeters(awg: number): number {
 export function awgToMicrons(awg: number): number {
   return awgToMeters(awg) * 1e6;
 }
+
+/**
+ * Equivalent single-wire AWG of a bundle of `n` parallel strands, by the
+ * industry convention: gauge follows total metal cross-section, not the
+ * bundle's outer diameter (which is larger because of the interstitial gaps).
+ *
+ * n strands ⇒ n× area ⇒ √n× equivalent diameter ⇒ shift of 39·ln(√n)/ln(92).
+ *
+ * Check: 7 strands of 42 AWG → 33.6 ≈ 34 AWG, matching the "34 AWG 7X42"
+ * label on the New England Wire N12-42M datasheet.
+ */
+export function bundleAwg(strandAwg: number, nStrands: number): number {
+  return strandAwg - (39 * Math.log(nStrands)) / (2 * Math.log(92));
+}
