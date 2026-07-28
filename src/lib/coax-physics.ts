@@ -203,6 +203,9 @@ export interface CoaxResults {
   a: number;                 // dielectric inner radius = 3·r_inner
   b: number;                 // dielectric outer radius = rRing - rOuterStrand
   cableOD: number;           // 2·(rRing + rOuterStrand)
+  /** False when b ≤ a — no dielectric annulus exists, so every quantity that
+   *  divides by ln(b/a) or by the annulus area is returned as NaN. */
+  geometryValid: boolean;
   // strand
   coverage: number;                // geometric outer-shield coverage
   K_s_inner_formula: number;       // formula default for inner bundle
@@ -242,6 +245,13 @@ export function computeCoax(inp: CoaxInputs): CoaxResults {
   const b = inp.rRing - inp.rOuterStrand;
   const cableOD = 2 * (inp.rRing + inp.rOuterStrand);
 
+  // The sliders can put the inner bundle outside the shield (big inner AWG
+  // and/or small ring radius). Without an annulus, ln(b/a) and (b² − a²) both
+  // go negative and the loss/heat formulas return *negative* numbers that look
+  // like results. Everything downstream of the annulus is NaN'd instead, which
+  // the UI already renders as "—".
+  const geometryValid = a > 0 && b > a;
+
   // 2. Stranding penalty (per-side; see comments at the formulas above)
   const coverage = shieldCoverage(inp.nOuter, inp.rOuterStrand, inp.rRing);
   const K_s_inner_formula = innerBundleStrandingPenalty(inp.layInner);
@@ -275,7 +285,8 @@ export function computeCoax(inp: CoaxInputs): CoaxResults {
 
   // 6. RF loss at T_avg — split inner/outer Pozar terms so each conductor
   // gets its own K_s, then recombine.
-  const perSide = coaxConductorLossPerSideFromRs(a, b, er, Rs);
+  const NO_ANNULUS = { alpha_inner_dBm: NaN, alpha_outer_dBm: NaN };
+  const perSide = geometryValid ? coaxConductorLossPerSideFromRs(a, b, er, Rs) : NO_ANNULUS;
   const alphaCond_inner = K_s_inner * perSide.alpha_inner_dBm;
   const alphaCond_outer = K_s_outer * perSide.alpha_outer_dBm;
   const alphaCond = alphaCond_inner + alphaCond_outer;
@@ -290,7 +301,7 @@ export function computeCoax(inp: CoaxInputs): CoaxResults {
   const RsRT = inp.metal.surfaceResistanceAt
     ? inp.metal.surfaceResistanceAt(inp.freq, 295, inp.rrr)
     : surfaceResistance(inp.freq, rhoRT);
-  const perSideRT = coaxConductorLossPerSideFromRs(a, b, erRT, RsRT);
+  const perSideRT = geometryValid ? coaxConductorLossPerSideFromRs(a, b, erRT, RsRT) : NO_ANNULUS;
   const alphaCondRT = K_s_inner * perSideRT.alpha_inner_dBm
                     + K_s_outer * perSideRT.alpha_outer_dBm;
   const alphaDielRT = coaxDielectricLoss(inp.freq, erRT, tanDRT);
@@ -299,7 +310,7 @@ export function computeCoax(inp: CoaxInputs): CoaxResults {
   // 8. Heat load with lay-angle corrections
   const Astrand_in = Math.PI * inp.rInner ** 2;
   const Aouter = inp.nOuter * Math.PI * inp.rOuterStrand ** 2;
-  const Adiel  = Math.PI * (b * b - a * a);
+  const Adiel  = geometryValid ? Math.PI * (b * b - a * a) : NaN;
 
   const metalIntegral = integrateSimpson(
     (T) => inp.metal.thermalConductivityAt(T, inp.rrr),
@@ -322,7 +333,7 @@ export function computeCoax(inp: CoaxInputs): CoaxResults {
   const Qtotal = Qinner + Qouter + Qdiel;
 
   return {
-    a, b, cableOD,
+    a, b, cableOD, geometryValid,
     coverage,
     K_s_inner_formula, K_s_outer_formula,
     K_s_inner, K_s_outer,

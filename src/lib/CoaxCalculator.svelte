@@ -14,27 +14,31 @@
   const N_INNER_STRANDS = 7;
 
   // ─── State ───
-  let presetKey = $state<string>("samtec_tcf3450f");
+  // Seeded from the preset itself rather than hand-copied values, so the
+  // sliders can't drift out of step with the preset shown as selected.
+  const INITIAL = PRESETS["samtec_tcf3450f"];
+
+  let presetKey = $state<string>(INITIAL.key);
 
   // Geometry
-  let innerAwg = $state(42);
-  let outerAwg = $state(46);
-  let nOuter = $state(36);
-  let rRing_um = $state(261);
-  let layInner_deg = $state(8);
-  let layOuter_deg = $state(20);
+  let innerAwg = $state(INITIAL.innerAwg);
+  let outerAwg = $state(INITIAL.outerAwg);
+  let nOuter = $state(INITIAL.nOuter);
+  let rRing_um = $state(INITIAL.rRing_um);
+  let layInner_deg = $state(INITIAL.layInner_deg);
+  let layOuter_deg = $state(INITIAL.layOuter_deg);
 
   // Materials
-  let metalKey = $state<"copper" | "brass" | "spc">("spc");
+  let metalKey = $state<"copper" | "brass" | "spc">(INITIAL.metal);
   let showMetalsInfo = $state(false);
-  let rrr = $state(50);
-  let dielKey = $state<"pfa" | "fepFoam" | "fepSolid">("fepFoam");
-  let foamFraction = $state(0.45);
+  let rrr = $state(INITIAL.rrr ?? 50);
+  let dielKey = $state<"pfa" | "fepFoam" | "fepSolid">(INITIAL.dielectric);
+  let foamFraction = $state(INITIAL.foamFraction ?? 0.45);
 
   // Per-side stranding-penalty corrections (multiplicative on top of formula).
   // 1.0 means "trust the formula as-is".
-  let K_s_inner_correction = $state(1.0);
-  let K_s_outer_correction = $state(1.0);
+  let K_s_inner_correction = $state(INITIAL.K_s_inner_correction ?? 1.0);
+  let K_s_outer_correction = $state(INITIAL.K_s_outer_correction ?? 1.0);
 
   // Operating conditions
   let stage = $state<Stage>("40to4");
@@ -476,6 +480,17 @@
             </div>
           {/if}
         </div>
+
+        {#if !results.geometryValid}
+          <div class="p-[14px] rounded-[10px] border border-warn-border bg-warn-bg
+                      text-[12px] text-text-secondary leading-snug">
+            <span class="font-semibold text-warn">Invalid geometry.</span>
+            The inner bundle (a = {fmt(results.a * 1e6)} µm) reaches the shield
+            (b = {fmt(results.b * 1e6)} µm), so there is no dielectric annulus.
+            Lower the inner-strand AWG or raise the outer-ring radius.
+            Loss and heat are undefined here and are shown as “—”.
+          </div>
+        {/if}
 
         {#if stage === 'calRT'}
           <div class="p-[14px] rounded-[10px] border border-accent2 bg-surface text-[12px] text-text-secondary leading-snug">
