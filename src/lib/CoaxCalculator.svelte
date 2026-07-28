@@ -294,13 +294,13 @@
             </div>
           {/if}
 
-          <Slider label="Inner-strand AWG"       bind:value={innerAwg}     min={36} max={48} step={1} unit="AWG"
+          <Slider label="Inner-strand AWG"       bind:value={innerAwg}     min={30} max={48} step={1} unit="AWG"
                   presetValue={currentPreset.innerAwg} />
-          <Slider label="Outer-strand AWG"       bind:value={outerAwg}     min={36} max={50} step={1} unit="AWG"
+          <Slider label="Outer-strand AWG"       bind:value={outerAwg}     min={30} max={50} step={1} unit="AWG"
                   presetValue={currentPreset.outerAwg} />
-          <Slider label="N outer strands"        bind:value={nOuter}       min={8}  max={64} step={1} unit=""
+          <Slider label="N outer strands"        bind:value={nOuter}       min={8}  max={500} step={1} unit=""
                   presetValue={currentPreset.nOuter} />
-          <Slider label="Outer-ring radius (R)"  bind:value={rRing_um}     min={100} max={600} step={1} unit="µm"
+          <Slider label="Outer-ring radius (R)"  bind:value={rRing_um}     min={100} max={1200} step={1} unit="µm"
                   presetValue={currentPreset.rRing_um} />
           <Slider label="Inner-bundle lay angle" bind:value={layInner_deg} min={0}  max={20} step={1} unit="°"
                   presetValue={currentPreset.layInner_deg} />

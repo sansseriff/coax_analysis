@@ -1,0 +1,72 @@
+/* Global theme for the coax projection deck. Light, print-clean, professional. */
+
+:root {
+	--font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+	--font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+	--bg: #f4f6f9;
+	--slide-bg: #ffffff;
+	--surface: #f7f9fc;
+	--surface-2: #eef2f7;
+	--border: #e2e6ec;
+	--border-strong: #d2d8e0;
+
+	--text-primary: #161b24;
+	--text-secondary: #4a5263;
+	--text-muted: #8a93a6;
+
+	/* Samtec / SPC column accent (blue) */
+	--accent: #2a6fb0;
+	--accent-soft: rgba(42, 111, 176, 0.08);
+	--accent-line: rgba(42, 111, 176, 0.35);
+
+	/* N12-42M / brass column accent (amber) */
+	--accent2: #b9701a;
+	--accent2-soft: rgba(185, 112, 26, 0.08);
+	--accent2-line: rgba(185, 112, 26, 0.35);
+
+	/* Scaled-up N12 variant accent (teal) */
+	--accent3: #1f7a7a;
+	--accent3-soft: rgba(31, 122, 122, 0.08);
+	--accent3-line: rgba(31, 122, 122, 0.35);
+
+	--ok: #2a8a50;
+	--warn: #c0492f;
+
+	/* Cable cross-section fills (copied from the main calculator app) */
+	--color-copper: #b87333;
+	--color-brass: #c9a64a;
+	--color-dielectric: rgba(180, 200, 230, 0.55);
+	--color-jacket: rgba(214, 220, 230, 0.7);
+
+	color-scheme: light;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background: var(--bg);
+	color: var(--text-primary);
+	font-family: var(--font-sans);
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+.mono {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}

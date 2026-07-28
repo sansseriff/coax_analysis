@@ -1,0 +1,968 @@
+{
+  "deckTitle": "Cryogenic Micro-Coax · Loss & Heat-Load Projections",
+  "bundle": 208,
+  "title": {
+    "kicker": "50 Ω stranded micro-coax · cryostat wiring",
+    "heading": "Insertion Loss & Heat-Load Projections",
+    "lede": {
+      "pre": "Hard numbers for RF insertion loss and conducted heat load of two candidate micro-coax cables, at assembly lengths of ",
+      "bold": "3″, 5″, 10″, 15″ and 18″",
+      "post": "."
+    },
+    "cards": [
+      {
+        "key": "samtec_tcf3450f",
+        "name": "Samtec TCF-3450F",
+        "description": "34 AWG (7×42) SPC / FEP-foam / 46 AWG SPC serve shield, 50 Ω",
+        "z0": "50.5",
+        "odMm": "0.56",
+        "odMils": "22.1",
+        "alpha": "0.637",
+        "crossSection": {
+          "rInner": 0.00003167032507089746,
+          "rOuterStrand": 0.000019917663227611766,
+          "rRing": 0.000261,
+          "nOuter": 36,
+          "a": 0.00009501097521269238,
+          "halfBox": 0.0002921543697567163,
+          "metal": "copper"
+        }
+      },
+      {
+        "key": "new_n12_42m",
+        "name": "NEW N12-42M-100006-1",
+        "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+        "z0": "49.8",
+        "odMm": "0.71",
+        "odMils": "28.0",
+        "alpha": "4.39",
+        "crossSection": {
+          "rInner": 0.00003167032507089746,
+          "rOuterStrand": 0.00002511570960715873,
+          "rRing": 0.00033,
+          "nOuter": 32,
+          "a": 0.00009501097521269238,
+          "halfBox": 0.0003693203379914451,
+          "metal": "brass"
+        }
+      }
+    ],
+    "notes": "RF model: Pozar conductor loss + dielectric loss, with per-conductor stranding factor K_s calibrated to the TCF-3450F insertion-loss curve (1–4 GHz). Heat load: steady-state conduction across each cryostat stage’s ΔT, with lay-angle path corrections. Use ← → to navigate."
+  },
+  "lengthSlides": [
+    {
+      "lengthIn": 3,
+      "mmIn": "76",
+      "cols": [
+        {
+          "key": "samtec_tcf3450f",
+          "name": "Samtec TCF-3450F",
+          "description": "34 AWG (7×42) SPC / FEP-foam / 46 AWG SPC serve shield, 50 Ω",
+          "z0": "50.5",
+          "odMm": "0.56",
+          "odMils": "22.1",
+          "alpha": "0.637",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.000019917663227611766,
+            "rRing": 0.000261,
+            "nOuter": 36,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0002921543697567163,
+            "metal": "copper"
+          },
+          "il2": "0.049",
+          "il4": "0.069",
+          "heatHi": {
+            "v": "35.3",
+            "u": "mW"
+          },
+          "heatLo": {
+            "v": "566",
+            "u": "µW"
+          }
+        },
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "il2": "0.335",
+          "il4": "0.475",
+          "heatHi": {
+            "v": "533",
+            "u": "µW"
+          },
+          "heatLo": {
+            "v": "5.1",
+            "u": "µW"
+          }
+        }
+      ],
+      "lossAdvTCF": "6.9",
+      "heatAdvN12": "66"
+    },
+    {
+      "lengthIn": 5,
+      "mmIn": "127",
+      "cols": [
+        {
+          "key": "samtec_tcf3450f",
+          "name": "Samtec TCF-3450F",
+          "description": "34 AWG (7×42) SPC / FEP-foam / 46 AWG SPC serve shield, 50 Ω",
+          "z0": "50.5",
+          "odMm": "0.56",
+          "odMils": "22.1",
+          "alpha": "0.637",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.000019917663227611766,
+            "rRing": 0.000261,
+            "nOuter": 36,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0002921543697567163,
+            "metal": "copper"
+          },
+          "il2": "0.081",
+          "il4": "0.115",
+          "heatHi": {
+            "v": "21.2",
+            "u": "mW"
+          },
+          "heatLo": {
+            "v": "339",
+            "u": "µW"
+          }
+        },
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "il2": "0.558",
+          "il4": "0.791",
+          "heatHi": {
+            "v": "320",
+            "u": "µW"
+          },
+          "heatLo": {
+            "v": "3.1",
+            "u": "µW"
+          }
+        }
+      ],
+      "lossAdvTCF": "6.9",
+      "heatAdvN12": "66"
+    },
+    {
+      "lengthIn": 10,
+      "mmIn": "254",
+      "cols": [
+        {
+          "key": "samtec_tcf3450f",
+          "name": "Samtec TCF-3450F",
+          "description": "34 AWG (7×42) SPC / FEP-foam / 46 AWG SPC serve shield, 50 Ω",
+          "z0": "50.5",
+          "odMm": "0.56",
+          "odMils": "22.1",
+          "alpha": "0.637",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.000019917663227611766,
+            "rRing": 0.000261,
+            "nOuter": 36,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0002921543697567163,
+            "metal": "copper"
+          },
+          "il2": "0.162",
+          "il4": "0.230",
+          "heatHi": {
+            "v": "10.6",
+            "u": "mW"
+          },
+          "heatLo": {
+            "v": "170",
+            "u": "µW"
+          }
+        },
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "il2": "1.12",
+          "il4": "1.58",
+          "heatHi": {
+            "v": "160",
+            "u": "µW"
+          },
+          "heatLo": {
+            "v": "1.5",
+            "u": "µW"
+          }
+        }
+      ],
+      "lossAdvTCF": "6.9",
+      "heatAdvN12": "66"
+    },
+    {
+      "lengthIn": 15,
+      "mmIn": "381",
+      "cols": [
+        {
+          "key": "samtec_tcf3450f",
+          "name": "Samtec TCF-3450F",
+          "description": "34 AWG (7×42) SPC / FEP-foam / 46 AWG SPC serve shield, 50 Ω",
+          "z0": "50.5",
+          "odMm": "0.56",
+          "odMils": "22.1",
+          "alpha": "0.637",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.000019917663227611766,
+            "rRing": 0.000261,
+            "nOuter": 36,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0002921543697567163,
+            "metal": "copper"
+          },
+          "il2": "0.243",
+          "il4": "0.346",
+          "heatHi": {
+            "v": "7.07",
+            "u": "mW"
+          },
+          "heatLo": {
+            "v": "113",
+            "u": "µW"
+          }
+        },
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "il2": "1.67",
+          "il4": "2.37",
+          "heatHi": {
+            "v": "107",
+            "u": "µW"
+          },
+          "heatLo": {
+            "v": "1.0",
+            "u": "µW"
+          }
+        }
+      ],
+      "lossAdvTCF": "6.9",
+      "heatAdvN12": "66"
+    },
+    {
+      "lengthIn": 18,
+      "mmIn": "457",
+      "cols": [
+        {
+          "key": "samtec_tcf3450f",
+          "name": "Samtec TCF-3450F",
+          "description": "34 AWG (7×42) SPC / FEP-foam / 46 AWG SPC serve shield, 50 Ω",
+          "z0": "50.5",
+          "odMm": "0.56",
+          "odMils": "22.1",
+          "alpha": "0.637",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.000019917663227611766,
+            "rRing": 0.000261,
+            "nOuter": 36,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0002921543697567163,
+            "metal": "copper"
+          },
+          "il2": "0.291",
+          "il4": "0.415",
+          "heatHi": {
+            "v": "5.89",
+            "u": "mW"
+          },
+          "heatLo": {
+            "v": "94",
+            "u": "µW"
+          }
+        },
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "il2": "2.01",
+          "il4": "2.85",
+          "heatHi": {
+            "v": "89",
+            "u": "µW"
+          },
+          "heatLo": {
+            "v": "0.8",
+            "u": "µW"
+          }
+        }
+      ],
+      "lossAdvTCF": "6.9",
+      "heatAdvN12": "66"
+    }
+  ],
+  "lengthFooter": "RF insertion loss = total α(f)·L at the 4–40 K stage (T̄ ≈ 22 K), conductor + dielectric. Heat load = steady-state conduction Q̇ across each stage's ΔT, per cable. Model: Pozar α_c with per-conductor stranding factor K_s (calibrated to the TCF-3450F IL curve, 1–4 GHz). Both cables 50 Ω.",
+  "scaledSlides": [
+    {
+      "variant": "new_doubled",
+      "lengthIn": 5,
+      "mmIn": "127",
+      "stage": "40to4",
+      "stageLabel": "40 K → 4 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "320",
+            "u": "µW"
+          },
+          "heatBundle": "66.6 mW",
+          "il2": "0.558",
+          "il4": "0.791"
+        },
+        {
+          "key": "new_doubled",
+          "name": "NEW-Doubled",
+          "description": "2× N12-42M scale — 28 AWG (7×36) brass / PFA / 38 AWG brass spiral shield, 50 Ω",
+          "z0": "49.7",
+          "odMm": "1.42",
+          "odMils": "55.9",
+          "alpha": "2.21",
+          "crossSection": {
+            "rInner": 0.0000635,
+            "rOuterStrand": 0.00005035778939699356,
+            "rRing": 0.00066,
+            "nOuter": 32,
+            "a": 0.0001905,
+            "halfBox": 0.0007387721009728732,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "1.29",
+            "u": "mW"
+          },
+          "heatBundle": "267.5 mW",
+          "il2": "0.281",
+          "il4": "0.399"
+        }
+      ],
+      "heatMult": "4.0",
+      "lossAdv": "2.0",
+      "odMult": "2.00"
+    },
+    {
+      "variant": "new_doubled",
+      "lengthIn": 5,
+      "mmIn": "127",
+      "stage": "4to1",
+      "stageLabel": "4 K → 1 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "3.1",
+            "u": "µW"
+          },
+          "heatBundle": "636 µW",
+          "il2": "0.553",
+          "il4": "0.783"
+        },
+        {
+          "key": "new_doubled",
+          "name": "NEW-Doubled",
+          "description": "2× N12-42M scale — 28 AWG (7×36) brass / PFA / 38 AWG brass spiral shield, 50 Ω",
+          "z0": "49.7",
+          "odMm": "1.42",
+          "odMils": "55.9",
+          "alpha": "2.21",
+          "crossSection": {
+            "rInner": 0.0000635,
+            "rOuterStrand": 0.00005035778939699356,
+            "rRing": 0.00066,
+            "nOuter": 32,
+            "a": 0.0001905,
+            "halfBox": 0.0007387721009728732,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "12",
+            "u": "µW"
+          },
+          "heatBundle": "2.56 mW",
+          "il2": "0.277",
+          "il4": "0.393"
+        }
+      ],
+      "heatMult": "4.0",
+      "lossAdv": "2.0",
+      "odMult": "2.00"
+    },
+    {
+      "variant": "new_doubled",
+      "lengthIn": 10,
+      "mmIn": "254",
+      "stage": "40to4",
+      "stageLabel": "40 K → 4 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "160",
+            "u": "µW"
+          },
+          "heatBundle": "33.3 mW",
+          "il2": "1.12",
+          "il4": "1.58"
+        },
+        {
+          "key": "new_doubled",
+          "name": "NEW-Doubled",
+          "description": "2× N12-42M scale — 28 AWG (7×36) brass / PFA / 38 AWG brass spiral shield, 50 Ω",
+          "z0": "49.7",
+          "odMm": "1.42",
+          "odMils": "55.9",
+          "alpha": "2.21",
+          "crossSection": {
+            "rInner": 0.0000635,
+            "rOuterStrand": 0.00005035778939699356,
+            "rRing": 0.00066,
+            "nOuter": 32,
+            "a": 0.0001905,
+            "halfBox": 0.0007387721009728732,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "643",
+            "u": "µW"
+          },
+          "heatBundle": "133.8 mW",
+          "il2": "0.561",
+          "il4": "0.798"
+        }
+      ],
+      "heatMult": "4.0",
+      "lossAdv": "2.0",
+      "odMult": "2.00"
+    },
+    {
+      "variant": "new_doubled",
+      "lengthIn": 10,
+      "mmIn": "254",
+      "stage": "4to1",
+      "stageLabel": "4 K → 1 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "1.5",
+            "u": "µW"
+          },
+          "heatBundle": "318 µW",
+          "il2": "1.11",
+          "il4": "1.57"
+        },
+        {
+          "key": "new_doubled",
+          "name": "NEW-Doubled",
+          "description": "2× N12-42M scale — 28 AWG (7×36) brass / PFA / 38 AWG brass spiral shield, 50 Ω",
+          "z0": "49.7",
+          "odMm": "1.42",
+          "odMils": "55.9",
+          "alpha": "2.21",
+          "crossSection": {
+            "rInner": 0.0000635,
+            "rOuterStrand": 0.00005035778939699356,
+            "rRing": 0.00066,
+            "nOuter": 32,
+            "a": 0.0001905,
+            "halfBox": 0.0007387721009728732,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "6.1",
+            "u": "µW"
+          },
+          "heatBundle": "1.28 mW",
+          "il2": "0.555",
+          "il4": "0.786"
+        }
+      ],
+      "heatMult": "4.0",
+      "lossAdv": "2.0",
+      "odMult": "2.00"
+    },
+    {
+      "variant": "new_tripled",
+      "lengthIn": 5,
+      "mmIn": "127",
+      "stage": "40to4",
+      "stageLabel": "40 K → 4 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "320",
+            "u": "µW"
+          },
+          "heatBundle": "66.6 mW",
+          "il2": "0.558",
+          "il4": "0.791"
+        },
+        {
+          "key": "new_tripled",
+          "name": "NEW-Tripled",
+          "description": "≈3× N12-42M scale — 25 AWG (7×33) brass / PFA / 34 AWG brass spiral shield, 50 Ω",
+          "z0": "50.0",
+          "odMm": "2.06",
+          "odMils": "81.1",
+          "alpha": "1.55",
+          "crossSection": {
+            "rInner": 0.00008991545108883627,
+            "rOuterStrand": 0.0000800720215935597,
+            "rRing": 0.00095,
+            "nOuter": 29,
+            "a": 0.0002697463532665088,
+            "halfBox": 0.0010712749024573021,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "2.84",
+            "u": "mW"
+          },
+          "heatBundle": "590.9 mW",
+          "il2": "0.197",
+          "il4": "0.281"
+        }
+      ],
+      "heatMult": "8.9",
+      "lossAdv": "2.8",
+      "odMult": "2.90"
+    },
+    {
+      "variant": "new_tripled",
+      "lengthIn": 5,
+      "mmIn": "127",
+      "stage": "4to1",
+      "stageLabel": "4 K → 1 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "3.1",
+            "u": "µW"
+          },
+          "heatBundle": "636 µW",
+          "il2": "0.553",
+          "il4": "0.783"
+        },
+        {
+          "key": "new_tripled",
+          "name": "NEW-Tripled",
+          "description": "≈3× N12-42M scale — 25 AWG (7×33) brass / PFA / 34 AWG brass spiral shield, 50 Ω",
+          "z0": "50.0",
+          "odMm": "2.06",
+          "odMils": "81.1",
+          "alpha": "1.55",
+          "crossSection": {
+            "rInner": 0.00008991545108883627,
+            "rOuterStrand": 0.0000800720215935597,
+            "rRing": 0.00095,
+            "nOuter": 29,
+            "a": 0.0002697463532665088,
+            "halfBox": 0.0010712749024573021,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "27",
+            "u": "µW"
+          },
+          "heatBundle": "5.65 mW",
+          "il2": "0.194",
+          "il4": "0.276"
+        }
+      ],
+      "heatMult": "8.9",
+      "lossAdv": "2.8",
+      "odMult": "2.90"
+    },
+    {
+      "variant": "new_tripled",
+      "lengthIn": 10,
+      "mmIn": "254",
+      "stage": "40to4",
+      "stageLabel": "40 K → 4 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "160",
+            "u": "µW"
+          },
+          "heatBundle": "33.3 mW",
+          "il2": "1.12",
+          "il4": "1.58"
+        },
+        {
+          "key": "new_tripled",
+          "name": "NEW-Tripled",
+          "description": "≈3× N12-42M scale — 25 AWG (7×33) brass / PFA / 34 AWG brass spiral shield, 50 Ω",
+          "z0": "50.0",
+          "odMm": "2.06",
+          "odMils": "81.1",
+          "alpha": "1.55",
+          "crossSection": {
+            "rInner": 0.00008991545108883627,
+            "rOuterStrand": 0.0000800720215935597,
+            "rRing": 0.00095,
+            "nOuter": 29,
+            "a": 0.0002697463532665088,
+            "halfBox": 0.0010712749024573021,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "1.42",
+            "u": "mW"
+          },
+          "heatBundle": "295.4 mW",
+          "il2": "0.394",
+          "il4": "0.562"
+        }
+      ],
+      "heatMult": "8.9",
+      "lossAdv": "2.8",
+      "odMult": "2.90"
+    },
+    {
+      "variant": "new_tripled",
+      "lengthIn": 10,
+      "mmIn": "254",
+      "stage": "4to1",
+      "stageLabel": "4 K → 1 K",
+      "cols": [
+        {
+          "key": "new_n12_42m",
+          "name": "NEW N12-42M-100006-1",
+          "description": "34 AWG (7×42) C27000 brass / PFA / 44 AWG brass spiral shield, 50 Ω",
+          "z0": "49.8",
+          "odMm": "0.71",
+          "odMils": "28.0",
+          "alpha": "4.39",
+          "crossSection": {
+            "rInner": 0.00003167032507089746,
+            "rOuterStrand": 0.00002511570960715873,
+            "rRing": 0.00033,
+            "nOuter": 32,
+            "a": 0.00009501097521269238,
+            "halfBox": 0.0003693203379914451,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "1.5",
+            "u": "µW"
+          },
+          "heatBundle": "318 µW",
+          "il2": "1.11",
+          "il4": "1.57"
+        },
+        {
+          "key": "new_tripled",
+          "name": "NEW-Tripled",
+          "description": "≈3× N12-42M scale — 25 AWG (7×33) brass / PFA / 34 AWG brass spiral shield, 50 Ω",
+          "z0": "50.0",
+          "odMm": "2.06",
+          "odMils": "81.1",
+          "alpha": "1.55",
+          "crossSection": {
+            "rInner": 0.00008991545108883627,
+            "rOuterStrand": 0.0000800720215935597,
+            "rRing": 0.00095,
+            "nOuter": 29,
+            "a": 0.0002697463532665088,
+            "halfBox": 0.0010712749024573021,
+            "metal": "brass"
+          },
+          "heat": {
+            "v": "14",
+            "u": "µW"
+          },
+          "heatBundle": "2.82 mW",
+          "il2": "0.389",
+          "il4": "0.552"
+        }
+      ],
+      "heatMult": "8.9",
+      "lossAdv": "2.8",
+      "odMult": "2.90"
+    }
+  ],
+  "summary": {
+    "eyebrow": "Summary",
+    "title": "All lengths at a glance",
+    "samtecName": "Samtec TCF-3450F",
+    "n12Name": "NEW N12-42M-100006-1",
+    "bundleHeader": "208 (13 cables of 16 lines)",
+    "rows": [
+      {
+        "length": "3″",
+        "samtec": {
+          "il": "0.049 dB",
+          "qHi": "35.3 mW",
+          "qLo": "566 µW",
+          "qHiBundle": "7.35 W",
+          "qLoBundle": "117.6 mW"
+        },
+        "n12": {
+          "il": "0.335 dB",
+          "qHi": "533 µW",
+          "qLo": "5.1 µW",
+          "qHiBundle": "110.9 mW",
+          "qLoBundle": "1.06 mW"
+        }
+      },
+      {
+        "length": "5″",
+        "samtec": {
+          "il": "0.081 dB",
+          "qHi": "21.2 mW",
+          "qLo": "339 µW",
+          "qHiBundle": "4.41 W",
+          "qLoBundle": "70.6 mW"
+        },
+        "n12": {
+          "il": "0.558 dB",
+          "qHi": "320 µW",
+          "qLo": "3.1 µW",
+          "qHiBundle": "66.6 mW",
+          "qLoBundle": "636 µW"
+        }
+      },
+      {
+        "length": "10″",
+        "samtec": {
+          "il": "0.162 dB",
+          "qHi": "10.6 mW",
+          "qLo": "170 µW",
+          "qHiBundle": "2.20 W",
+          "qLoBundle": "35.3 mW"
+        },
+        "n12": {
+          "il": "1.12 dB",
+          "qHi": "160 µW",
+          "qLo": "1.5 µW",
+          "qHiBundle": "33.3 mW",
+          "qLoBundle": "318 µW"
+        }
+      },
+      {
+        "length": "15″",
+        "samtec": {
+          "il": "0.243 dB",
+          "qHi": "7.07 mW",
+          "qLo": "113 µW",
+          "qHiBundle": "1.47 W",
+          "qLoBundle": "23.5 mW"
+        },
+        "n12": {
+          "il": "1.67 dB",
+          "qHi": "107 µW",
+          "qLo": "1.0 µW",
+          "qHiBundle": "22.2 mW",
+          "qLoBundle": "212 µW"
+        }
+      },
+      {
+        "length": "18″",
+        "samtec": {
+          "il": "0.291 dB",
+          "qHi": "5.89 mW",
+          "qLo": "94 µW",
+          "qHiBundle": "1.22 W",
+          "qLoBundle": "19.6 mW"
+        },
+        "n12": {
+          "il": "2.01 dB",
+          "qHi": "89 µW",
+          "qLo": "0.8 µW",
+          "qHiBundle": "18.5 mW",
+          "qLoBundle": "177 µW"
+        }
+      }
+    ],
+    "footer": "Insertion loss quoted at 2 GHz, 4–40 K stage. Heat load is conducted Q̇ across each stage's ΔT — shown per cable and for the full 208-cable harness (13 × 16). See per-length slides for 4 GHz figures and inner/outer/dielectric breakdowns."
+  }
+}
